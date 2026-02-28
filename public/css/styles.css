@@ -1,0 +1,11 @@
+body {
+    background-color: #f5f7fa;
+}
+
+header {
+    border-bottom: 2px solid #dee2e6;
+}
+
+.card {
+    border-radius: 10px;
+}
