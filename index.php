@@ -1,10 +1,12 @@
 <?php
 session_start();
+$cantSolicitudes = isset($_SESSION['solicitudes']) && is_array($_SESSION['solicitudes'])
+    ? count($_SESSION['solicitudes'])
+    : 0;
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,17 +70,21 @@ session_start();
     <!-- CONTENIDO -->
     <main class="container my-4">
 
+        <?php if ($cantSolicitudes > 0): ?>
+            <div class="alert alert-info">
+                Actualmente hay <strong><?= $cantSolicitudes ?></strong> solicitud(es) registrada(s).
+                <a href="ver.php" class="alert-link">Ver solicitudes</a>.
+            </div>
+        <?php endif; ?>
+
         <div class="row g-4">
 
             <!-- CARD PRINCIPAL -->
             <div class="col-md-8">
-
                 <section class="card shadow-sm">
                     <div class="card-body">
 
-                        <h3 class="card-title">
-                            Bienvenido al sistema
-                        </h3>
+                        <h3 class="card-title">Bienvenido al sistema</h3>
 
                         <p>
                             Esta aplicación permite registrar solicitudes de soporte técnico
@@ -91,32 +97,22 @@ session_start();
 
                     </div>
                 </section>
-
             </div>
 
             <!-- SIDEBAR -->
             <div class="col-md-4">
-
                 <aside class="card shadow-sm">
                     <div class="card-body">
 
                         <h5>Opciones</h5>
 
                         <div class="d-grid gap-2">
-
-                            <a href="solicitud.php" class="btn btn-outline-primary">
-                                Registrar Solicitud
-                            </a>
-
-                            <a href="ver.php" class="btn btn-outline-success">
-                                Ver Solicitudes
-                            </a>
-
+                            <a href="solicitud.php" class="btn btn-outline-primary">Registrar Solicitud</a>
+                            <a href="ver.php" class="btn btn-outline-success">Ver Solicitudes</a>
                         </div>
 
                     </div>
                 </aside>
-
             </div>
 
         </div>
@@ -132,5 +128,4 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
 </html>
